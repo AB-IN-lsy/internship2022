@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">  
+
+<configuration>
+	<!-- 读入数据库相关的配置文件 -->
+	<properties resource="db.properties"  />
+	
+    <!-- 批量别名定义,只要是com.beans包下的类,都可以使用默认别名,类名首字母大小写均可 -->
+	<typeAliases>
+		<package name="com.beans"/>
+	</typeAliases>
+	
+	<!-- 数据源等环境相关的配置 -->
+    <environments default="development">    
+       <environment id="development">  
+           <transactionManager type="JDBC"/>  
+           <dataSource type="POOLED">    
+               <property name="driver" value="${db.driverName}"/>  
+               <property name="url" value="${db.url}"/>  
+               <property name="username" value="${db.username}"/>  
+               <property name="password" value="${db.password}"/>  
+           </dataSource>  
+       </environment>  
+    </environments>  
+    
+    <!-- 要引入其他的映射文件 -->
+    <mappers>
+    	<!--  
+    		<mapper resource="mappings/UserMapper.xml" />
+    	-->
+    	<!--  
+    	<mapper  class="com.mapper.UserMapper"  />
+         -->
+         
+        <package name="com.mapper" />
+    </mappers>
+   					    
+</configuration>
+					
+					

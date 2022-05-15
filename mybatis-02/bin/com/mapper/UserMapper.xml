@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.mapper.UserMapper">
+	<!--这里声明了一个sql片段 -->
+	<sql id="cols">
+		id,userName,password,note
+	</sql>
+	
+	<!--这里声明了一个sql片段 -->
+	<sql id="select_condation">
+	    <if test="id !=0">
+	    	and id=#{id}
+	    </if>  
+	    <if test="userName!=null and userName!='' ">   
+	    	and userName=#{userName}
+	    </if>
+	    
+ 		<if test="password!=null and password!='' ">   
+	    	and password=#{password}
+	    </if>  
+	</sql>
+
+	<select id="getUserById"   resultType="UserInfo">
+		select 
+		  <include refid="cols" />
+		from userInfo where id= #{id}     
+	</select>
+
+	<!-- 添加用户 ,一定要设定数据库的主键是自增主键-->
+	<insert id="addUser"  parameterType="userInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into userInfo (userName,password,note) values (#{userName} , #{password},#{note}) 
+	</insert>
+	
+	<!-- 删除用户 -->
+	<delete id="deleteUser" parameterType="int">
+		delete from userInfo where id=#{id}
+	</delete>
+	
+	<!-- 修改用户 -->
+	<update id="updateUser" parameterType="UserInfo" >
+		update userInfo set userName=#{userName},  password=#{password},note=#{note} where id=#{id}
+	</update>
+	
+	<!-- 查询列表 -->
+	<select id="getAll" resultType="UserInfo"> 
+		select * from userInfo
+	</select>
+	
+	<!-- 登录 两个参数，则parameterType就不写了-->
+	<select id="login" resultType="UserInfo">   
+		select * from userInfo where userName=#{userName}  and password=#{password}
+	</select>
+	
+	<!-- 查多个符合的 -->
+	<select id="selectList"   parameterType="userInfo" resultType="UserInfo" >
+	    select * from userInfo  
+	    <where>
+	     	 <include refid="select_condation"  />
+	    </where>
+	</select>
+	
+	<!--查询数据条数,用到了sql片段 -->
+	<select id="getUserCount" parameterType="userInfo" resultType="int">
+		select count(*) from userInfo
+		<where>
+	     	 <include refid="select_condation"  />
+	    </where>
+	</select>
+	
+</mapper>

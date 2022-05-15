@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.mapper.UserMapper">
+	<!--sql片段: 表的所有列(不含Datetime) -->
+	<sql id="cols">
+		userId, userName, userPass, userNickname, 
+		userEmail, userUrl, userAvatar, userLastLoginIp, userStatus
+	</sql>
+	<!--sql片段: 表的所有列 -->
+	<sql id="colsValue">
+		#{userId}, #{userName}, #{userPass}, #{userNickname}, 
+		#{userEmail}, #{userUrl}, #{userAvatar}, #{userLastLoginIp}, #{userStatus}
+	</sql>
+	<!--sql片段: 查询的条件 -->
+	<sql id="select_condition"> 
+	    <if test="userName!=null and userName!='' ">   
+	    	and userName=#{userName}
+	    </if>
+	</sql>
+	<!-- 分割线———————————————————————————————————————————————————————————————————— -->
+	
+	
+	<!-- 添加用户 ,一定要设定数据库的主键是自增主键-->
+	<insert id="add"  parameterType="user" useGeneratedKeys="true" keyProperty="userId" keyColumn="userId">
+		insert into user (<include refid="cols" />) values (<include refid="colsValue" />) 
+	</insert>
+	
+	<!-- 得到所有数据 -->
+	<select id="getUserList" resultType="user">
+		select * from user
+	</select>
+	
+	<!-- 查询数据条数 -->
+	<select id="count" parameterType="user" resultType="int">
+		select count(*) from user
+		<where>
+	     	 <include refid="select_condition"  />
+	    </where>
+	</select>
+
+	
+</mapper>

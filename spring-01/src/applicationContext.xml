@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 在spring工厂中创建一个对象 -->
+	<bean name="userInfo_name" class="com.beans.UserInfo">
+		<property name="id" value="99" />
+		<property name="userName" value="admin" />
+		<property name="password" value="123" />
+		<property name="note" value="这是一个来源于spring的对象" />
+	</bean>
+	<bean name="userServlet_name" class="com.controller.UserServlet">
+		<property name="dao" ref="daoImpOracle" />
+	</bean>
+				
+	<bean name="daoImpMysql" class="com.dao.impl.UserDaoImplMySql" />
+	<bean name="daoImpOracle" class="com.dao.impl.UserDaoImplOracle" />
+</beans>

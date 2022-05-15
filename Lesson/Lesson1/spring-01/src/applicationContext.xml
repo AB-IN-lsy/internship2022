@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!--  
+	<bean name="userInfo_name" class="com.beans.UserInfo" scope="prototype" >
+		<property name="id" value="99" />
+		<property name="userName" value="admin" />
+		<property name="password" value="123" />
+		<property name="note" value="这是一个来源于spring的对象" />
+	</bean>
+	-->
+
+	
+	<bean name="userInfo_name"  class="com.beans.UserInfo" 
+	   p:userName="root"
+	   p:password="admin123"
+	   p:id="20"
+	   p:note="这是一个用了p名称空间的类" />
+	
+	
+	<bean name="userServlet_name" class="com.controller.UserServlet">
+		<property name="dao" ref="daoImpMysql" />
+		
+		<property name="mySet">
+			<set>
+				<value>子弹</value>
+				<value>炸药</value>
+				<value>刺刀</value>
+		    </set>
+		</property>
+		
+		<property name="myMap">
+			<map>
+				<entry key="GUN_01"  value="AK47" />
+				<entry key="GUN_02"  value="M16" />
+				<entry key="GUN_03"  value="MP5" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean name="daoImpMysql" class="com.dao.impl.UserDaoImplMySql" />
+	
+	<bean name="daoImpOracle" class="com.dao.impl.UserDaoImplOracle" />
+	
+	
+	
+	
+	
+</beans>

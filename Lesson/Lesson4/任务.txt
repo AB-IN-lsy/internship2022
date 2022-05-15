@@ -1,0 +1,40 @@
+
+		以 Mapper 代理的方式,完成下面的表对应的 持久层代码,并测试通过
+		
+		public class User {
+		    private Integer userId;   //主键,自增id
+		
+		    private String userName;  //账号
+		
+		    private String userPass;  //密码
+		
+		    private String userNickname;  //昵称
+		
+		    private String userEmail;  //邮箱
+		
+		    private String userUrl;  //用户网址
+		
+		    private String userAvatar;   //头象图片地址
+		
+		    private String userLastLoginIp;  //最后登录的ip地址
+		
+		    private Date userRegisterTime;  //注册时间
+		
+		    private Date userLastLoginTime; //最后登录时间
+		
+		    private Integer userStatus;  //用户状态
+		}
+		
+		
+		 持久层提供以下方法:
+		    login() 
+		    
+		    add()
+		    
+		    update()
+		    
+		    getUserList()
+		    
+		    delete ()
+		    
+		    count()  
