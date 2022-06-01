@@ -9,3 +9,4 @@
 ctrl + shift + o 	导包
 alt + shift + s 	generate
 alt + ? 			提示
+ctrl + shift + f 	格式化
