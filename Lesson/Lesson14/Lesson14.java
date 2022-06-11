@@ -269,21 +269,21 @@
 	  		  <dependency>
 	            <groupId>com.github.pagehelper</groupId>
 	            <artifactId>pagehelper</artifactId>
-	            <version>4.2.1</version>
+	            <version>5.3.0</version>
 	        </dependency>
 	   
 	   4) 在 mybatis-config中,进行分页相关的配置
-			   <plugins>
-			        <plugin interceptor="com.github.pagehelper.PageHelper">
-			            <property name="dialect" value="mysql"/>
-			            <property name="offsetAsPageNum" value="false"/>
-			            <property name="rowBoundsWithCount" value="false"/>
-			            <property name="pageSizeZero" value="true"/>
-			            <property name="reasonable" value="true"/>
-			            <property name="supportMethodsArguments" value="false"/>
-			            <property name="returnPageInfo" value="none"/>
-			        </plugin>
-			    </plugins>
+			<plugins>
+				<plugin interceptor="com.github.pagehelper.PageInterceptor">
+					<!--<property name="dialect" value="mysql"/>-->
+					<property name="offsetAsPageNum" value="false"/>
+					<property name="rowBoundsWithCount" value="false"/>
+					<property name="pageSizeZero" value="true"/>
+					<property name="reasonable" value="true"/>
+					<property name="supportMethodsArguments" value="false"/>
+					<property name="returnPageInfo" value="none"/>
+				</plugin>
+			</plugins>
 		
 		5) ArticleController 控制层
 				package com.controller;

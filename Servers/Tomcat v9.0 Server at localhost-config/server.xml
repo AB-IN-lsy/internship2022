@@ -153,7 +153,14 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="system" path="/system" reloadable="true" source="org.eclipse.jst.jee.server:system"/></Host>
+      	<Context docBase="system" path="/system" reloadable="true" source="org.eclipse.jst.jee.server:system"/>
+      	<Context docBase="C:/Users/liusy/Pictures/uploadImg" path="/upload"  reloadable="true"  />
+      	
+      </Host>
+      
+      <!-- ssm-blog-system 配置 要加在Host中 -->
+<!--  <Context debug="0" docBase="D:\Code\SSM\ssm-blog-system" path="/" reloadable="true"/>
+	  <Context debug="0" docBase="D:\Code\SSM\ssm-blog-system\uploads" path="/uploads" reloadable="true"/> -->
     </Engine>
   </Service>
 </Server>
